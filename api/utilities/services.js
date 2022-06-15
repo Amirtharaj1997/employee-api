@@ -15,7 +15,7 @@ module.exports = (mongoose, config, logger,path, fs, HolidayModel, LeaveApplicat
             totalDay += 1;
         }
        HolidayModel.count({
-           holidayDate : {$in: arrTime}
+           holidayDate : { $and : [{$in: arrTime}, {employeeId: body.employeeId} ]}
        }, function (e, holidayCount) {
            if(e) {
                logger.error(500, e.stack);
