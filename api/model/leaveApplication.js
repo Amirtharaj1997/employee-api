@@ -6,7 +6,7 @@ const LeaveApplicationSchema = new Schema({
         type: String, required: true
     },
     employeeName: String,
-    Department: String,
+    department: String,
     fromDate: {
         type: Date, required: true,
     },

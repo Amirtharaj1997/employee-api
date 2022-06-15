@@ -98,10 +98,11 @@ module.exports = (mongoose, config, logger,path, fs, HolidayModel, LeaveApplicat
                 }
                 findNumberOfLeave(body, function (e, count) {
                    if(count === 0) {
-                       return res.status(401);
+                       return res.status(401).send("not valid entry");
                    }
                     new LeaveApplicationModel({
-                        ...body
+                        ...body,
+                            ...{noOfLeave: count}
                     }).save((error, response) => {
                         if(error) {
                             logger.error(500, error.stack);
