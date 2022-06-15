@@ -77,11 +77,13 @@ module.exports = (mongoose, config, logger,path, fs, HolidayModel, LeaveApplicat
                 $or : [
                     {
                         fromDate: {$gte: new Date(body.fromDate)},
-                        toDate: {$lte: new Date(body.fromDate)}
+                        toDate: {$lte: new Date(body.fromDate)},
+                        employeeId: body.employeeId
                     },
                     {
                         fromDate: {$gte: new Date(body.toDate)},
-                        toDate: {$lte: new Date(body.toDate)}
+                        toDate: {$lte: new Date(body.toDate)},
+                        employeeId: body.employeeId
                     }
                 ]
             };
