@@ -7,7 +7,7 @@ module.exports = (mongoose, config, logger,path, fs, HolidayModel, LeaveApplicat
             ,count = 0
             ,totalDay = 0;
         for (let q = initialTime; q <= endTime; q.setDate(q.getDate() + 1)) {
-            if(q.getDay() !== 6 || q.getDay() !== 0) {
+            if(!(q.getDay() === 6 || q.getDay() === 0)) {
                 arrTime.push(new Date(q));
             } else {
                 count += 1;
@@ -15,13 +15,14 @@ module.exports = (mongoose, config, logger,path, fs, HolidayModel, LeaveApplicat
             totalDay += 1;
         }
        HolidayModel.count({
-           holidayDate : { $and : [{$in: arrTime}, {employeeId: body.employeeId} ]}
+           holidayDate : { $in: arrTime},
+            employeeId: body.employeeId
        }, function (e, holidayCount) {
            if(e) {
                logger.error(500, e.stack);
                callback(e)
            }
-           callback(null, totalDay - holidayCount + count);
+           callback(null, totalDay - (holidayCount + count));
        })
     }
     return {
