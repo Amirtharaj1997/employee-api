@@ -1,0 +1,59 @@
+{
+  "name": "Configuration",
+  "project": "Employee",
+  "expressVersion": "v4.18.1",
+  "settings": {
+    "port": 3000,
+    "nodeEnv": "local",
+    "JWT": {
+      "secretKey": "SEcretKeyoFEmployee",
+      "expiration": "8h",
+      "expirationRememberMe": "30d"
+    },
+    "baseUrl": "http://localhost:3000/",
+    "database": {
+      "uri": "mongodb://localhost:27017/employee",
+      "user": "",
+      "password": "",
+      "database": "employee",
+      "connectionLimit": 30,
+      "mutipleStatements": "true",
+      "charset": "utf8mb4"
+    },
+    "statusCode": {
+      "success": {
+        "OK": 200,
+        "Ok": 200
+      },
+      "clientError": {
+        "badRequest": 400,
+        "Unauthorized": 401,
+        "NotFound": 404,
+        "tokenExpired": 419,
+        "Forbidden": 403,
+        "InValidInput": 422
+      },
+      "serverError": {
+        "internalServerError": 500
+      }
+    },
+    "routes": {
+      "holiday": "/api/holiday",
+      "leave": "/api/leave"
+    },
+    "errors": {
+      "badRequest": {
+      },
+      "internalServerError": {
+        "afterQuery": "Database error. Please try again.",
+        "serverError": "Internal Server Error!!"
+      },
+      "messages": {
+      }
+    },
+    "success": {
+      "messages": {
+      }
+    }
+  }
+}
